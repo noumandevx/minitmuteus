@@ -1,0 +1,42 @@
+.sub-collections__wrapper {
+  display: flex;
+  justify-content: start;
+  gap: 64px;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.sub-collections-link {
+  font-size: var(--font-body-2xs-size);
+  color: var(--color-black-02);
+  white-space: nowrap;
+  padding-bottom: 0.5rem;
+}
+
+.sub-collections-link.sub-collections-current {
+  color: var(--color-grey-21);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-transform: capitalize;
+}
+
+.sub-collections-link--active {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sub-collections__container.page-width {
+  padding: 0 2.3rem;
+  border-bottom: 1px solid var(--color-grey-23);
+}
+
+@media screen and (min-width: 769px) {
+  .sub-collections__wrapper {
+    justify-content: center;
+  }
+
+  .sub-collections__container.page-width {
+    border-bottom: unset;
+  }  
+}

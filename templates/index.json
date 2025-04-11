@@ -1,0 +1,151 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "hero_banner_PWFfgq": {
+      "type": "hero-banner",
+      "blocks": {
+        "image_T7bNBB": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Rectangle_cf15b8c5-2c34-4da8-8232-319eb717a319.png",
+            "mobile_image": "shopify://shop_images/Rectangle_6.png",
+            "image_link": "shopify://collections/new-arrival"
+          }
+        },
+        "image_pDFX6Y": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Rectangle_cf15b8c5-2c34-4da8-8232-319eb717a319.png",
+            "mobile_image": "shopify://shop_images/Rectangle_6.png",
+            "image_link": "shopify://collections/new-arrival"
+          }
+        }
+      },
+      "block_order": [
+        "image_T7bNBB",
+        "image_pDFX6Y"
+      ],
+      "settings": {}
+    },
+    "collection_slideshow_XWebmd": {
+      "type": "collection-slideshow",
+      "settings": {
+        "heading": "",
+        "collection": "new-arrival",
+        "second_image": false,
+        "show_product_type": true,
+        "hide_price": true,
+        "limit_products": 8,
+        "image_ratio": "square",
+        "padding_top": 102,
+        "padding_bottom": 104,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24
+      }
+    },
+    "images_categories_anRdmt": {
+      "type": "image-categories",
+      "blocks": {
+        "image_iBWneU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bb111.jpg",
+            "image_width": 50,
+            "full_width": false,
+            "btn_text": "Notice",
+            "btn_url": "shopify://blogs/notice"
+          }
+        },
+        "image_73txg8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bb222.jpg",
+            "image_width": 50,
+            "full_width": false,
+            "btn_text": "New Arrival",
+            "btn_url": "shopify://collections/new-arrival"
+          }
+        },
+        "image_CJirNA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bb333.jpg",
+            "image_width": 100,
+            "full_width": true,
+            "btn_text": "Collection",
+            "btn_url": "shopify://collections/new-arrival"
+          }
+        }
+      },
+      "block_order": [
+        "image_iBWneU",
+        "image_73txg8",
+        "image_CJirNA"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "rich_text_jtTTUX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jzVEff": {
+          "type": "heading",
+          "settings": {
+            "heading": "Enjoy Your Trip",
+            "heading_size": "h1"
+          }
+        },
+        "text_pxKn4Y": {
+          "type": "text",
+          "settings": {
+            "text": "<p>minitmute start with an idea of<br/>making a light and small bag for travelling</p>"
+          }
+        },
+        "button_ikXmge": {
+          "type": "button",
+          "settings": {
+            "button_label": "Brand Story",
+            "button_link": "shopify://pages/brand-story",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_jzVEff",
+        "text_pxKn4Y",
+        "button_ikXmge"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 106,
+        "padding_bottom": 70,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 28
+      }
+    }
+  },
+  "order": [
+    "hero_banner_PWFfgq",
+    "collection_slideshow_XWebmd",
+    "images_categories_anRdmt",
+    "rich_text_jtTTUX"
+  ]
+}

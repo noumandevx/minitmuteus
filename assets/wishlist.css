@@ -1,0 +1,219 @@
+.swym-wishlist-detail-header,
+.swym-wishlist-detail-separator,
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-add-to-cart-btn,
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-variant-title,
+#swym-user-login-status-btn {
+  display: none !important; /* Need Imortant to override App inline CSS*/
+}
+
+.swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar {
+  border: none !important; /* Need Imortant to override App inline CSS*/
+  justify-content: center;
+  padding: 100px 2.3rem 32px;
+}
+
+.swym-ui-component .swym-wishlist-grid {
+  max-width: 100%;
+  row-gap: 35px;
+  column-gap: 8px;
+  margin-bottom: 100px;
+}
+
+.swym-ui-component .swym-wishlist-grid li {
+  width: calc(25% - 6px);
+  margin: 0;
+}
+
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-image-wrapper {
+  height: auto;
+}
+
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-image-wrapper img {
+  max-width: 100%;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-product-price {
+  padding: 0;
+  margin: .7rem 0 0;
+  color: var(--color-black-08);
+  font-size: var(--font-body-2xs-size);
+  text-align: center;
+  justify-content: center;
+  font-weight: var(--font-weight-400);
+}
+
+.swym-ui-component .swym-product-price .swym-product-final-price {
+  margin: 0;
+}
+
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-title {
+  font-weight: var(--font-weight-400);
+  color: var(--color-black-08);
+  margin: 0;
+  text-align: center;
+  font-size: var(--font-body-2xs-size);
+}
+
+.swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar .swym-wishlist-main-title {
+  font-size: var(--font-body-xl-size);
+  font-weight: var(--font-weight-400);
+  color: var(--color-black-08) !important; /* Need Imortant to override App inline CSS*/
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-delete-btn .swym-icon::before {
+  color: var(--color-black-08) !important; /* Need Imortant to override App inline CSS*/
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-add-to-cart-btn {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content-container,
+.swym-showing-product-detail .swym-wishlist-detail-content {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-product-detail-image-container .swym-image-thumbnails .swym-image-thumb.swym-selected {
+  border-width: 1px;
+  border-color: var(--color-black-08);
+}
+
+.swym-ui-component .swym-wishlist-product-detail-tab-bar {
+  box-shadow: none;
+  background: none;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-add-to-cart-btn {
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-action-button-container {
+  margin-top: 0;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-more-details {
+  margin: 10px 0;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-add-to-cart-btn {
+  border-radius: 100px;
+  letter-spacing: normal;
+  border: 1px solid var(--color-black);
+  padding: 0;
+  width: 100%;
+  max-width: 134px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: auto;
+  min-width: max-content;
+  height: 34px;
+  color: var(--color-black-06);
+  font-family: var(--font-primary);
+  font-size: var(--font-body-xs-size);
+  font-style: normal;
+  font-weight: var(--font-weight-400);
+  line-height: normal;
+  text-transform: uppercase;
+  background: none !important;
+  transition: all 0.4s ease;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-add-to-cart-btn:hover {
+  background-color: var(--color-black) !important;
+  color: var(--color-white);
+}
+
+.swym-ui-component .swym-product-price .swym-product-final-price,
+.swym-ui-component .swym-wishlist-product-detail-content .swym-more-details-btn:only-child {
+ font-weight: var(--font-weight-400); 
+ padding: 0;
+ color: var(--color-black-06);
+}
+
+.swym-ui-component .swym-wishlist-product-detail-tab-bar .swym-product-tab {
+  transition: all 0.4s ease;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-product-title {
+  font-weight: var(--font-weight-400);
+  color: var(--color-black-06);
+  font-size: var(--font-h4-size);
+  margin-bottom: 10px;
+}
+
+.swym-ui-component .swym-wishlist-product-detail-content .swym-product-price {
+  margin-bottom: 10px;
+}
+
+.swym-ui-component .swym-product-price .swym-product-final-price {
+  font-size: var(--font-h6-size);
+}
+
+@media (min-width: 750px) {
+  .swym-ui-component.swym-wishlist-page {
+    padding: 0 2.3rem;
+    max-width: 1660px;
+  }
+
+  .swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-product-price {
+    font-size: var(--font-body-xl-size);
+  }
+
+  .swym-ui-component .swym-wishlist-grid .swym-wishlist-item .swym-title {
+    font-size: var(--font-body-lg-size);
+  }
+
+  .swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar .swym-wishlist-main-title {
+    font-size: var(--font-h4-size);
+  }
+}
+
+@media (max-width: 990px) {
+  .swym-ui-component .swym-wishlist-grid .swym-wishlist-image-wrapper {
+    max-height: unset;
+  }
+
+  .swym-ui-component .swym-wishlist-grid li {
+    width: calc(50% - 4px);
+  }
+
+  .swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-product-detail-image-container .swym-image-full {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar {
+    padding-top: 40px;
+  }
+
+  .swym-ui-component .swym-wishlist-container-title-bar {
+    height: auto;
+  }
+
+  .swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar .swym-wishlist-main-title {
+    display: block;
+  }
+
+  .swym-ui-component .swym-wishlist-product-detail-content .swym-wishlist-product-detail-info {
+    padding: 0 5vw 0;
+  }
+
+  .swym-ui-component .swym-wishlist-product-detail-tab-bar {
+    padding-top: 0;
+  }
+
+  .swym-ui-component .swym-simple-wishlist-container .swym-wishlist-detail .swym-action-bar {
+    padding-top: 0;
+  }
+}

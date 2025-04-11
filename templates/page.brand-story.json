@@ -1,0 +1,165 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_image_banner_xGT6Xd": {
+      "type": "custom-image-banner",
+      "blocks": {
+        "heading_za9xzk": {
+          "type": "heading",
+          "settings": {
+            "heading": "BRAND STORY",
+            "spacing_top": 100,
+            "spacing_top_mob": 63,
+            "hd_color": "#353535",
+            "hd_font_size": 20,
+            "hd_font_size_mob": 12,
+            "heading_size": "h2"
+          }
+        },
+        "heading_eCJYaG": {
+          "type": "heading",
+          "settings": {
+            "heading": "ENJOY YOUR TRIP",
+            "spacing_top": 50,
+            "spacing_top_mob": 10,
+            "hd_color": "#353535",
+            "hd_font_size": 25,
+            "hd_font_size_mob": 18,
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_za9xzk",
+        "heading_eCJYaG"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/100_7e0a9c71-15ee-418c-8b7e-998b5e2c400b.webp",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "top-center",
+        "font_weight": 400,
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-010360c5-c537-46a0-aea8-d95151046b72",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "image_with_text_HrbYnF": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_VzWcwT": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p><strong>minitmute was established in 2015,<br/>and makes minimal but practical bag.<br/>minitmute makes a bag that becomes more beautiful as time goes by.</strong></p>",
+            "heading_size": "h2"
+          }
+        },
+        "text_Wytki8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Minitmute starts with the idea of making a light and small bag for travel.<br/>Minitmute shows various leathers and colors, with a simple design, lightweight ,and small size adequate for travel.<br/>Rather than following the latest trends, we chose a leather that has the fanciness of a bag and is simple to design with a retro mood.<br/>We are focusing on quality materials and craftsmanship instead of pursuing various unique designs in the saturated design market.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VzWcwT",
+        "text_Wytki8"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/0637f190a178665db12fb0a2c8518337_b48e52d3-68ad-49b3-94bf-972d05f05ec1.jpg",
+        "heading_desktop_size": 25,
+        "richtext_desktop_size": 18,
+        "heading_mobile_size": 15,
+        "richtext_mobile_size": 12,
+        "heading_bottom_space_desktop": 82,
+        "heading_bottom_space_mobile": 40,
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 55,
+        "padding_bottom_mobile": 55
+      }
+    },
+    "image_slides_REGMQB": {
+      "type": "image-slides",
+      "blocks": {
+        "slide_LmGHt9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1_e0fd65a8-80b8-4ff5-be08-1b6b8de235a5.jpg"
+          }
+        },
+        "slide_tHQTjL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2_7e4cd295-73bd-4bad-b57c-1f1ceaee0391.jpg"
+          }
+        },
+        "slide_MCT8Qm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3_c8c602ec-c195-4a9e-bcb2-3c2ef77139c8.jpg"
+          }
+        },
+        "slide_LFMhLQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/000023.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_LmGHt9",
+        "slide_tHQTjL",
+        "slide_MCT8Qm",
+        "slide_LFMhLQ"
+      ],
+      "settings": {
+        "padding_top": 95,
+        "padding_bottom": 95,
+        "padding_top_mob": 55,
+        "padding_bottom_mob": 55,
+        "heading": "",
+        "limit_products": 6,
+        "desktop_cols": 1,
+        "mobile_cols": 1
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_image_banner_xGT6Xd",
+    "image_with_text_HrbYnF",
+    "image_slides_REGMQB"
+  ]
+}

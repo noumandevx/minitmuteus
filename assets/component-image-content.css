@@ -1,0 +1,54 @@
+.images-content {
+  width: 100%;
+}
+
+.images-content__img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.template-suffix-event-reviews .images-content__img {
+  width: 100%;
+  height: auto;
+}
+
+.images-content__img--mobile {
+  display: block;
+}
+
+.images-content__img--desktop {
+  display: none;
+}
+
+.page-template.about .images-content .images-content__img {
+  min-height: 606px;
+  max-height: 606px;
+  object-fit: cover;
+}
+
+.template-product .images-content.page-width {
+  max-width: 860px;
+}
+
+@media (min-width: 768px) {
+  .images-content__img--desktop {
+    display: block;
+  }
+
+  .images-content__img--mobile {
+    display: none;
+  }
+
+  .page-template.about .images-content .images-content__img {
+    min-height: 820px;
+    max-height: 820px;
+  }
+}
+
+@media (max-width: 749px) {
+  .template-product .images-content.page-width {
+    padding-inline: 0;
+  }
+}

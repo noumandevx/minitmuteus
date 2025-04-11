@@ -1,0 +1,170 @@
+{{ 'collection-slideshow.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}--padding .featured-product-slider__container {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}--padding .featured-product-slider__container {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+<featured-product-slider
+  class="featured-product-slider section-{{ section.id }}--padding"
+  data-desktop-cols="{{ section.settings.desktop_cols }}"
+  data-mobile-cols="{{ section.settings.mobile_cols }}"
+>
+  <div class="featured-product-slider__container">
+    {% if section.settings.heading != blank %}
+      <div class="featured-product-slider__heading">
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+    <div class="swiper featured-product-slider__wrapper" data-featured-product-slider>
+      <div class="swiper-wrapper">
+        {% assign collection = section.settings.collection %}
+        {% for product in collection.products %}
+          {% if product.available %}
+            <div class="swiper-slide{% if section.settings.hide_price %} hide-price{% endif %}">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                show_secondary_image: section.settings.second_image,
+                show_product_type: section.settings.show_product_type,
+                section_id: section.id,
+                has_swatches: true
+              %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="swiper-button-prev" data-featured-slider-prev>
+      {% render 'icon-arrow-left' %}
+    </div>
+    <div class="swiper-button-next" data-featured-slider-next>
+      {% render 'icon-arrow-right' %}
+    </div>
+  </div>
+</featured-product-slider>
+
+<script src="{{ 'collection-slideshow.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Collection slides",
+  "settings": [
+    {
+      "type": "richtext",
+      "label": "Heading",
+      "id": "heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_image",
+      "default": false,
+      "label": "Show Second Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "default": true,
+      "label": "Show Product Type"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_price",
+      "default": false,
+      "label": "Hide Price"
+    },
+    {
+      "type": "range",
+      "id": "limit_products",
+      "label": "Products To Show",
+      "step": 2,
+      "min": 2,
+      "max": 200,
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image Ratio"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Spacing Top",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Spacing Bottom",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Spacing Top Mobile",
+      "step": 1,
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Spacing Bottom Mobile",
+      "step": 1,
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection slides"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,83 @@
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+{% assign swiperIndex = "" %}
+{%- for block in section.blocks -%}
+  {% if block.settings.image_link != blank %}
+    {% assign swiperIndex = "swiper-index" %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<hero-banner class="hero-banner hero-banner--{{ section.id }}">
+  <div class="hero-banner__media-container">
+    <div class="hero-banner__swiper swiper-container" hero-slider>
+      <div class="swiper-wrapper {{ swiperIndex }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image' -%}
+            <div class="hero-banner__slide swiper-slide">
+              {% if block.settings.image_link != blank %}
+                <a
+                  href="{{ block.settings.image_link }}"
+                  class="hero-banner__media-link"
+                ></a>
+              {% endif %}
+              {% if block.settings.mobile_image != blank %}
+                <picture class="hero-banner__picture">
+                  <source media="(max-width:768px)" srcset="{{ block.settings.mobile_image | img_url: 'master' }}">
+                  <img
+                    src="{{ block.settings.desktop_image | img_url: 'master' }}"
+                    class="hero-banner__media-image"
+                    alt="{{ block.settings.desktop_image.alt }}"
+                  >
+                </picture>
+              {% else %}
+                {% if block.settings.desktop_image != blank %}
+                  <img
+                    src="{{ block.settings.desktop_image | img_url: 'master' }}"
+                    class="hero-banner__media-image"
+                    alt="{{ block.settings.desktop_image.alt }}"
+                  >
+                {% endif %}
+              {% endif %}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</hero-banner>
+
+<script src="{{ 'section-hero-banner.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

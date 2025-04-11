@@ -1,0 +1,126 @@
+{{ 'section-lookbook.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 767px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+{% endstyle %}
+
+<div class="lookbook lookbook--main section-{{ section.id }}-padding">
+  <div class="lookbook__container">
+    {% for block in section.blocks %}
+      <div class="lookbook-image__main">
+        <div class="lookbook-image__main-inner">
+          {% if block.settings.image_link %}
+            <a href="{{ block.settings.image_link }}" class="lookbook-image__link"></a>
+          {% endif %}
+          {% if block.settings.image_mobile %}
+            <picture>
+              <source srcset="{{ block.settings.image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
+              <img
+                src="{{ block.settings.image_desktop | img_url: 'master' }}"
+                alt="{{ block.settings.image_desktop.alt }}"
+                class="lookbook__image"
+              >
+            </picture>
+          {% else %}
+            {% if block.settings.image_desktop %}
+              <img
+                src="{{ block.settings.image_desktop | img_url: 'master' }}"
+                alt="{{ block.settings.image_desktop.alt }}"
+                class="lookbook__image"
+              >
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top Mobile",
+      "step": 1,
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom Mobile",
+      "step": 1,
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Desktop Image",
+          "id": "image_desktop"
+        },
+        {
+          "type": "image_picker",
+          "label": "Mobile Image",
+          "id": "image_mobile"
+        },
+        {
+          "type": "url",
+          "label": "Image Link",
+          "id": "image_link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LookBook"
+    }
+  ]
+}
+{% endschema %}

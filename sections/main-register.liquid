@@ -1,0 +1,326 @@
+{{ 'custom-contact.css' | asset_url | stylesheet_tag }}
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<register-form>
+  <div class="customer register section-{{ section.id }}-padding">
+    <h1 class="customer__heading">
+      {{ 'customer.register.title' | t }}
+    </h1>
+    {%- form 'create_customer' -%}
+      {%- if form.errors -%}
+        <h2 class="form__message" tabindex="-1" autofocus>
+          <span class="svg-wrapper">
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          {{ 'templates.contact.form.error_heading' | t }}
+        </h2>
+        <ul>
+          {%- for field in form.errors -%}
+            <li>
+              {%- if field == 'form' -%}
+                {{ form.errors.messages[field] }}
+              {%- else -%}
+                <a href="#RegisterForm-{{ field }}">
+                  {{ form.errors.translated_fields[field] | capitalize }}
+                  {{ form.errors.messages[field] }}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <div class="field">
+        <input
+          type="text"
+          name="customer[first_name]"
+          id="RegisterForm-FirstName"
+          {% if form.first_name %}
+            value="{{ form.first_name }}"
+          {% endif %}
+          autocomplete="given-name"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+          required
+          data-text-input
+        >
+        <label for="RegisterForm-FirstName">
+          {{ 'customer.register.first_name' | t }}
+        </label>
+      </div>
+      <div class="field">
+        <input
+          type="text"
+          name="customer[last_name]"
+          id="RegisterForm-LastName"
+          {% if form.last_name %}
+            value="{{ form.last_name }}"
+          {% endif %}
+          autocomplete="family-name"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+          required
+          data-text-input
+        >
+        <label for="RegisterForm-LastName">
+          {{ 'customer.register.last_name' | t }}
+        </label>
+      </div>
+      <div class="field">
+        <input
+          type="email"
+          name="customer[email]"
+          id="RegisterForm-email"
+          {% if form.email %}
+            value="{{ form.email }}"
+          {% endif %}
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="email"
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="RegisterForm-email-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.email' | t }}"
+          required
+          data-email-input
+        >
+        <label for="RegisterForm-email">
+          {{ 'customer.register.email' | t }}
+        </label>
+      </div>
+      {%- if form.errors contains 'email' -%}
+        <span id="RegisterForm-email-error" class="form__message">
+          <span class="svg-wrapper">
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}.
+        </span>
+      {%- endif -%}
+      <div class="field" data-field>
+        <input
+          type="password"
+          name="customer[password]"
+          id="RegisterForm-password"
+          aria-required="true"
+          {% if form.errors contains 'password' %}
+            aria-invalid="true"
+            aria-describedby="RegisterForm-password-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.password' | t }}"
+          required
+          data-password
+        >
+        <label for="RegisterForm-password">
+          {{ 'customer.register.password' | t }}
+        </label>
+        <p class="field__instructions">{{ 'customer.register.instruction' | t }}</p>
+      </div>
+      {%- if form.errors contains 'password' -%}
+        <span id="RegisterForm-password-error" class="form__message">
+          <span class="svg-wrapper">
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          {{ form.errors.translated_fields.password | capitalize }}
+          {{ form.errors.messages.password }}.
+        </span>
+      {%- endif -%}
+      <div class="customer__dob field" data-dob-wrapper>
+        <input type="hidden" value="" name="customer[note][DOB]" data-full-dob required>
+        <div class="customer__dob-field customer__dob-field--month" data-dob-drop>
+          <label for="customerDobMonth" data-dob-label>
+            <span>
+              {{ 'customer.register.month' | t }}
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+              <path d="M6.78009 6.9198H5.61005L0.790039 0.0898438H2.18005L6.21008 5.92981L10.22 0.0898438H11.5901L6.79004 6.9198H6.78009Z" fill="black"/>
+            </svg>
+          </label>
+          <div class="customer__dob-arrow customer__dob-arrow--active" data-scroll-down>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.1098 5.46979H4.2298L0.589844 0.319824H1.63983L4.67981 4.71979L7.69983 0.319824H8.7298L5.1098 5.46979Z" fill="#4D4D4D"/>
+            </svg>
+          </div>
+          <div class="customer__dob-dropdown" data-dropdown-list>
+            {% for month in (1..12) %}
+              {% if forloop.index < 10 %}
+                {% assign month = month | append: '0' %}
+              {% else %}
+              {% assign month = month %}
+              {% endif %}
+              <span class="customer__dropdown-value" data-drop-value="{{ month }}" data-drop-month>
+                <svg class="icon-tick" xmlns="http://www.w3.org/2000/svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M5.22949 7.51978H4.30951L0.519531 2.14978H1.6095L4.77954 6.73975L8.71948 0.509766H9.78949L5.22949 7.51978Z" fill="#030000"/>
+                </svg>
+                {{ month }}
+              </span>
+            {% endfor %}
+          </div>
+          <span class="customer__dropdown-select-value" data-selected-val></span>
+        </div>
+        <div class="customer__dob-field customer__dob-field--day" data-dob-drop>
+          <label for="customerDobMonth" data-dob-label>
+            <span>
+              {{ 'customer.register.day' | t }}
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+              <path d="M6.78009 6.9198H5.61005L0.790039 0.0898438H2.18005L6.21008 5.92981L10.22 0.0898438H11.5901L6.79004 6.9198H6.78009Z" fill="black"/>
+            </svg>
+          </label>
+          <div class="customer__dob-arrow customer__dob-arrow--active" data-scroll-down>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.1098 5.46979H4.2298L0.589844 0.319824H1.63983L4.67981 4.71979L7.69983 0.319824H8.7298L5.1098 5.46979Z" fill="#4D4D4D"/>
+            </svg>
+          </div>
+          <div class="customer__dob-dropdown" data-dropdown-list data-drop-down-days>
+            {% for day in (1..31) %}
+              {% if forloop.index < 10 %}
+                {% assign day = day |  append: '0' %}
+              {% else %}
+              {% assign day = day %}
+              {% endif %}
+              <span class="customer__dropdown-value" data-drop-value="{{ day }}" data-drop-date>
+                <svg class="icon-tick" xmlns="http://www.w3.org/2000/svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M5.22949 7.51978H4.30951L0.519531 2.14978H1.6095L4.77954 6.73975L8.71948 0.509766H9.78949L5.22949 7.51978Z" fill="#030000"/>
+                </svg>
+                {{ day }}
+              </span>
+            {% endfor %}
+          </div>
+          <span class="customer__dropdown-select-value" data-selected-val></span>
+        </div>
+        <div class="customer__dob-field customer__dob-field--Year" data-dob-drop>
+          <label for="customerDobMonth" data-dob-label>
+            <span>
+              {{ 'customer.register.year' | t }}
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+              <path d="M6.78009 6.9198H5.61005L0.790039 0.0898438H2.18005L6.21008 5.92981L10.22 0.0898438H11.5901L6.79004 6.9198H6.78009Z" fill="black"/>
+            </svg>
+          </label>
+          <div class="customer__dob-arrow customer__dob-arrow--active" data-scroll-down>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.1098 5.46979H4.2298L0.589844 0.319824H1.63983L4.67981 4.71979L7.69983 0.319824H8.7298L5.1098 5.46979Z" fill="#4D4D4D"/>
+            </svg>
+          </div>
+          <div class="customer__dob-dropdown" data-dropdown-list>
+            {% assign current_year = 'now' | date: "%Y" %}
+            {% for year in (1950..current_year) reversed %}
+              <span class="customer__dropdown-value" data-drop-value="{{ year }}">
+                <svg class="icon-tick" xmlns="http://www.w3.org/2000/svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M5.22949 7.51978H4.30951L0.519531 2.14978H1.6095L4.77954 6.73975L8.71948 0.509766H9.78949L5.22949 7.51978Z" fill="#030000"/>
+                </svg>
+                {{ year }}
+              </span>
+            {% endfor %}
+          </div>
+          <span class="customer__dropdown-select-value" data-selected-val></span>
+        </div>
+      </div>
+      <div class="custom-contact__checbox custom-contact__first-checbox">
+        <label for="accept-marketing" class="custom-contact__checkbox-label">
+          <input class="custom-contact__checkbox-input" type="checkbox" id="accept-marketing" name="contact[accepts_marketing]" value="true">
+          <span class="custom-contact__checkbox-box"></span>
+          <span>
+            {{ section.settings.checkbox_1 }}
+            <a class="custom-contact__checkbox-detail" href="{{ section.settings.details_button_url }}">{{ section.settings.details_button_text }}</a>
+          </span>
+        </label>
+      </div>
+      <div class="custom-contact__checbox">
+        <label for="ContactForm-terms" class="custom-contact__checkbox-label">
+          <input class="custom-contact__checkbox-input" type="checkbox" id="ContactForm-terms" name="customer[note][{{ 'templates.contact.form.terms' | t | handleize | replace: "-", "_" }}]">
+          <span class="custom-contact__checkbox-box"></span>
+          <span>{{ section.settings.checkbox_2 }}</span>
+        </label>
+      </div>
+      {% if section.settings.checkbox_3 != blank %}
+        <div class="custom-contact__checbox custom-contact__checbox--last">
+          <label for="ContactForm-checkbox3" class="custom-contact__checkbox-label">
+            <input class="custom-contact__checkbox-input" type="checkbox" id="ContactForm-checkbox3" name="customer[note][checkbox3]">
+            <span class="custom-contact__checkbox-box"></span>
+            <span>{{ section.settings.checkbox_3 }}</span>
+          </label>
+        </div>
+      {% endif %}
+      <div class="contact__button">
+        <button type="submit" class="custom-contact__submit" data-submit disabled>
+          {{ 'customer.register.submit' | t }}
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+</register-form>
+
+<script src="{{ 'register.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.main-register.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "checkbox_1",
+      "label": "First Checkbox Content",
+    },
+    {
+      "type": "url",
+      "id": "details_button_url",
+      "label": "Detail Button Link",
+    },
+    {
+      "type": "text",
+      "id": "details_button_text",
+      "label": "Detail Button Content",
+      "default": "Detail"
+    },
+    {
+      "type": "text",
+      "id": "checkbox_2",
+      "label": "Second Checkbox Content",
+    },
+    {
+      "type": "text",
+      "id": "checkbox_3",
+      "label": "3rd Checkbox Content",
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

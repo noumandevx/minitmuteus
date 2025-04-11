@@ -1,0 +1,109 @@
+{{ 'component-recent-products.css' | asset_url | stylesheet_tag }}
+<recent-product>
+  <div class="recent__container">
+    <div class="page-width">
+      <div class="aw-recent__contentWrap" data-cc-animate>
+        {% if section.settings.heading != blank %}
+          <h2 class="aw-recent__pageTitle">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+        <div class="aw-recent__productList">
+          <div class="aw-recent__productCount hidden" data-product-count></div>
+          <div class="aw-recent__productError hidden" data-product-error>
+            <p class="aw-recent__errorText">Error</p>
+          </div>
+          <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down swiper" data-recent-slider>
+            <div class="swiper-wrapper" data-product-html>
+            </div>
+            <div class="swiper-button-next" data-swiper-button-next>
+              {%  render 'next-arrow' %}
+            </div>
+            <div class="swiper-button-prev" data-swiper-button-prev>
+              {% render 'prev-arrow' %}
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</recent-product>
+<script>
+  const shopMoneyFormat = '{{ cart.currency.symbol }}';
+  let productData = JSON.parse(localStorage.getItem("recentlyViewedProduct"));
+  let productCount = document.querySelector('[data-product-count]');
+  let productHtml = "";
+
+  if (productData) {
+    const reversedProductData = productData.slice().reverse();
+
+    reversedProductData.forEach(function(item) {
+      let productPriceString = parseInt(item.productPrice, 10);
+      let productPrice = productPriceString.toLocaleString();
+      let productComparePriceString = parseInt(item.productComparePrice, 10);
+      let productComparePrice = productComparePriceString.toLocaleString();
+
+      productHtml += 
+        `<li class="grid__item swiper-slide">
+          <div class="card-wrapper product-card-wrapper underline-links-hover" data-product-id="${item.productID}">
+            <div class="card card--standard card--media" style="--ratio-percent: 100%;">
+              <div class="card__inner color-scheme-2 gradient ratio" style="--ratio-percent: 100%;">
+                <div class="card__media">
+                  <a href="${item.productLink}" class="aw-recent__productLink">
+                    <div class="media media--transparent media--hover-effect">
+                      <img class="aw-recent__productImage motion-reduce" src="${item.productImage}" alt="${item.productTitle}">
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="card-information">
+                <a href="${item.productLink}" class="aw-recent__productLink">
+                  <h3 class="aw-recent__productTitle card__heading h5">${item.productTitle}</h3>
+                </a>
+                <p class="aw-recent__productType hidden">${item.productType}</p>
+                <a href="${item.productLink}" class="aw-recent__productLink">
+                <div class="aw-recent__productPrice price">${shopMoneyFormat}${productPrice}</div>
+                ${productComparePriceString > 0 ? `<div class="aw-recent__productComparePrice">${shopMoneyFormat}${productComparePrice}</div>` : ""}
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>`;
+    });
+
+    let productHtmlMain = document.querySelector('[data-product-html]');
+    if (productHtmlMain) {
+      productHtmlMain.innerHTML = productHtml;
+    }
+
+    if (productCount) {
+      productCount.textContent = `${reversedProductData.length} Products`;
+    }
+  } else {
+    if (productCount) {
+      productCount.textContent = "0 Product";
+    }
+
+    let productHtmlError = document.querySelector('[data-product-error]');
+    if (productHtmlError) {
+      productHtmlError.classList.remove('hidden');
+    }
+  }
+</script>
+<script src="{{ 'recent-product.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "Recent View Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Title",
+      "default": "Recently Viewed Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recent View Products"
+    }
+  ]
+}
+{% endschema %}

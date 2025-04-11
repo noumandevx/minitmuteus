@@ -1,0 +1,347 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+{{ 'custom-contact.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact custom-contact page-width page-width--narrow section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title custom-contact__title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- else -%}
+      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+    {%- endif -%}
+    {% if section.settings.richtext != blank %}
+      <div class="custom-contact__richtext">
+        {{ section.settings.richtext | replace: "<a", '<a class="custom-contact__richtext-achor"' }}
+      </div>
+    {% endif %}
+    {%- liquid
+      assign contact_form_class = 'isolate'
+      if settings.animations_reveal_on_scroll
+        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+      endif
+    -%}
+    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+      {%- if form.posted_successfully? -%}
+        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+          {{- 'icon-success.svg' | inline_asset_content -}}
+          {{ 'templates.contact.form.post_success' | t }}
+        </h2>
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#ContactForm-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%} 
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-name">{{ 'templates.contact.form.firstname' | t }} <span aria-hidden="true">*</span></label>
+        <input
+          class="field__input custom-contact__input"
+          autocomplete="name"
+          type="text"
+          aria-required="true"
+          required
+          id="ContactForm-name"
+          name="contact[{{ 'templates.contact.form.firstname' | t | handleize | replace: "-", "_" }}]"
+          value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+        >
+      </div>
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-name">{{ 'templates.contact.form.lastname' | t }} <span aria-hidden="true">*</span></label>
+        <input
+          class="field__input custom-contact__input"
+          autocomplete="name"
+          required
+          type="text"
+          aria-required="true"
+          id="ContactForm-name"
+          name="contact[{{ 'templates.contact.form.lastname' | t | handleize | replace: "-", "_" }}]"
+          value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+        >
+      </div>
+      <div class="field--with-error custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-email">
+          {{- 'templates.contact.form.email' | t }}
+          <span aria-hidden="true">*</span>
+        </label>
+        <input
+          autocomplete="email"
+          type="email"
+          id="ContactForm-email"
+          class="field__input custom-contact__input"
+          name="contact[email]"
+          required
+          spellcheck="false"
+          autocapitalize="off"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="ContactForm-email-error"
+          {% endif %}
+          placeholder="{{ 'templates.contact.form.email' | t }}"
+        >
+        {%- if form.errors contains 'email' -%}
+          <small class="contact__field-error" id="ContactForm-email-error">
+            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+            <span class="form__message">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </span>
+          </small>
+        {%- endif -%}
+      </div>
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-order">
+          {{ 'templates.contact.form.order_nbr' | t }}
+        </label>
+        <input
+          type="text"
+          id="ContactForm-order"
+          class="field__input custom-contact__input"
+          name="contact[{{ 'templates.contact.form.order_nbr' | t | handleize | replace: "-", "_" }}]"
+        >
+      </div>  
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-phone">{{ 'templates.contact.form.cell' | t }}</label>
+        <input
+          type="tel"
+          id="ContactForm-phone"
+          class="field__input custom-contact__input"
+          autocomplete="tel"
+          name="contact[{{ 'templates.contact.form.cell_body' | t | replace: "-", "_" }}]"
+          pattern="[0-9\-]*"
+          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+          placeholder="{{ 'templates.contact.form.cell' | t }}"
+        >
+      </div>
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-select">{{ 'templates.contact.form.topic' | t }}
+          <span aria-hidden="true">*</span>
+        </label>
+        <input
+          id="ContactForm-select"
+          type="text"
+          name="contact[{{ 'templates.contact.form.topic' | t | downcase | replace: "-", "_" }}]"
+          data-selected-value
+          value=""
+          aria-required="true"
+          class="hidden-input"
+        >
+        <div class="custom-contact__dropdown" data-dropdown>
+          <div class="custom-contact__dropdown-toggle" data-dropdown-toggle>
+            <span>Select topic</span>
+            <span class="custom-contact__dropdown-icon" data-dropdown-icon>{{- 'icon-down-arrow.svg' | inline_asset_content -}}</span>
+          </div>
+          <div class="custom-contact__dropdown-menu" data-dropdown-menu>
+            {% for block in section.blocks %}
+              {%  if block.settings.option_name != blank %}
+                <div class="custom-contact__dropdown-item" data-value="{{ block.settings.option_name }}">{{ block.settings.option_name }}</div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>            
+      <div class="custom-contact__field">
+        <label class="custom-contact__label" for="ContactForm-body">
+          {{- 'templates.contact.form.comment' | t -}}  <span aria-hidden="true">*</span>
+        </label>
+        <textarea
+          rows="10"
+          id="ContactForm-body"
+          required
+          aria-required="true"
+          class="text-area field__input custom-contact__input "
+          name="contact[{{ 'templates.contact.form.comment' | t }}]"
+          placeholder="{{ 'templates.contact.form.comment' | t }}"
+        >
+          {{- form.body -}}
+        </textarea>
+      </div>
+      <div class="custom-contact__checbox custom-contact__first-checbox">
+        <label for="ContactForm-consent" class="custom-contact__checkbox-label">
+          <input class="custom-contact__checkbox-input" type="checkbox" id="ContactForm-consent" name="contact[{{ 'templates.contact.form.consent' | t | handleize | replace: "-", "_" }}]" data-checkbox-concent>
+          <span class="custom-contact__checkbox-box"></span>
+          <span>
+            {{ section.settings.checkbox_1 }}
+            <a class="custom-contact__checkbox-detail" href="{{ section.settings.details_button_url }}">{{ section.settings.details_button_text }}</a>
+          </span>
+        </label>
+      </div>
+      <div class="custom-contact__checbox">
+        <label for="ContactForm-terms" class="custom-contact__checkbox-label">
+          <input class="custom-contact__checkbox-input" type="checkbox" id="ContactForm-terms" name="contact[{{ 'templates.contact.form.terms' | t | handleize | replace: "-", "_" }}]" data-checkbox-term>
+          <span class="custom-contact__checkbox-box"></span>
+          <span>{{ section.settings.checkbox_2 }}</span>
+        </label>
+      </div>
+      <div class="contact__button">
+        <button type="submit" class="custom-contact__submit custom-contact__submit--disabled" data-submit disabled>
+          {{ 'templates.contact.form.send' | t }}
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+<script src="{{ 'custom-contact.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Custom Contact",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Contact form",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "Form Description"
+    },
+    {
+      "type": "text",
+      "id": "checkbox_1",
+      "label": "First Checkbox Content",
+    },
+    {
+      "type": "url",
+      "id": "details_button_url",
+      "label": "Detail Button Link",
+    },
+    {
+      "type": "text",
+      "id": "details_button_text",
+      "label": "Detail Button Content",
+      "default": "Detail"
+    },
+    {
+      "type": "text",
+      "id": "checkbox_2",
+      "label": "Second Checkbox Content",
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "dropdown",
+      "name": "Drop-down",
+      "settings": [
+        {
+          "type": "text",
+          "id": "option_name",
+          "label": "Option Name",
+          "default": "Option Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Contact"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+.images-lookbook {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 50px 0 150px;
+}
+
+.images-lookbook__img {
+  width: 100%;
+  height: 100%;
+}
+
+.images-lookbook__container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 0;
+}
+
+@media (min-width: 767px) {
+  .images-lookbook {
+    padding: 150px 20px;
+  }
+}

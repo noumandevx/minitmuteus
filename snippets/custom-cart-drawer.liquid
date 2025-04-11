@@ -1,0 +1,249 @@
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+
+  .cart-drawer__divider {
+    width: 100%;
+    border: 0.75px solid var(--color-grey-16);
+
+    &:empty {
+      display: block;
+    }
+  }
+</style>
+
+<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %} custom-cart-drawer" data-custom-cart-drawer>
+  <div id="CartDrawer" class="cart-drawer">
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div
+      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'sections.cart.title' | t }}"
+      tabindex="-1"
+    >
+      {%- if cart == empty -%}
+        <div class="drawer__inner-empty">
+          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
+            <div class="cart-drawer__empty-content">
+              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t | upcase }}</h2>
+              <button
+                class="drawer__close"
+                type="button"
+                onclick="this.closest('cart-drawer').close()"
+                aria-label="{{ 'accessibility.close' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <a href="{{ routes.all_products_collection_url }}" class="button cart-drawer__continue-shopping-button">
+                {{ 'general.continue_shopping' | t | upcase }}
+              </a>
+
+              {%- if shop.customer_accounts_enabled and customer == null -%}
+                <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
+                <p class="cart__login-paragraph">
+                  {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+                </p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- if settings.cart_drawer_collection != blank -%}
+            <div class="cart-drawer__collection">
+              {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if cart != empty -%}
+        <div class="drawer__close">
+          <button
+            class="drawer__close-button"
+            type="button"
+            onclick="this.closest('cart-drawer').close()"
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+        </div>
+        <div class="drawer__wrapper">
+          <form id="CartDrawer-Form" action="{{ routes.cart_url }}" method="post">
+            <div class="drawer__header">
+              <div class="drawer__title">
+                <h4 class="drawer__title-text">{{ 'sections.cart.title' | t }}</h4>
+                <div class="drawer__count">
+                  <span class="drawer__count-text" aria-hidden="true" data-count-text>({{ cart.item_count }})</span>
+                </div>
+              </div>
+              <div class="drawer__free-shipping-bar">
+                <div class="drawer__free-shipping-bar-progress">
+                  {%- assign free_shipping_threshold = 350.00 -%}
+                  {%- assign current_total = cart.total_price | divided_by: 100.00 -%}
+                  {%- assign progress_percentage = current_total | divided_by: free_shipping_threshold | times: 100 | at_most: 100 -%}
+                  <div class="drawer__free-shipping-bar-progress-fill" style="width: {{ progress_percentage }}%;" data-free-shipping-bar-progress-fill></div>
+                </div>
+                <div class="drawer__free-shipping-bar-text">
+                  {%- assign remaining_amount = free_shipping_threshold | minus: current_total | times: 100.00 | at_least: 0 -%}
+                  <p class="drawer__free-shipping-bar-text-label" data-free-shipping-bar-text-label>
+                    {%- if remaining_amount == 0 -%}
+                      You can get FREE shipping!
+                    {%- else -%}
+                      add {{ remaining_amount | money }} more for FREE shipping
+                    {%- endif -%}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {%- render 'cart-drawer-divider' -%}
+
+            <div class="drawer__products" {% if cart.items.size == 1 %}data-single-item="true"{% endif %} data-drawer-products-container>
+              {%- for item in cart.items -%}
+                <div class="drawer__products-item" data-item-id="{{ item.id }}" data-drawer-products-item>
+                  <div class="drawer__products-img">
+                    <a href="{{ item.url }}">
+                      <img
+                        class="drawer__products-img-item"
+                        src="{{ item.image | image_url }}"
+                        alt="{{ item.image.alt | escape }}"
+                        loading="lazy"
+                        width="168"
+                        height="168"
+                      >
+                    </a>
+                  </div>
+                  <div class="drawer__products-item-info">
+                    <div class="drawer__products-item-info-title">
+                      <p>{{ item.product.title }}</p>
+                    </div>
+                    <div class="drawer__products-item-info-colors">
+                      <p>{{ item.product.type }}</p>
+                    </div>
+                    <div class="drawer__products-item-info-price">
+                      <p>{{ item.price | money }}</p>
+                    </div>
+                    <div class="drawer__products-item-info-quantity">
+                      <button
+                      class="drawer__products-item-info-quantity__button minus"
+                      data-quantity-control-button
+                      data-quantity-control-button-minus
+                      data-item-id="{{ item.id }}"
+                      {% if item.quantity == 1 %}disabled{% endif %}
+                      >-</button>
+                      <span class="drawer__products-item-info-quantity__count" data-quantity-count>{{ item.quantity }}</span>
+                      <button
+                        class="drawer__products-item-info-quantity__button plus"
+                        data-quantity-control-button
+                        data-quantity-control-button-plus
+                        data-item-id="{{ item.id }}"
+                      >+</button>
+                    </div>
+                    <div class="drawer__products-item-remove">
+                      <button class="drawer__products-item-remove-button" data-item-id="{{ item.id }}" data-remove-item-button>
+                        {{ 'sections.cart.remove_title' | t }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            {%- render 'cart-drawer-divider' -%}
+
+            <div class="drawer__recommend-products" data-recommend-products-container>
+              {%- if cart.items.first.product.handle -%}
+                {%- assign current_product = cart.items.first.product -%}
+                {%- assign recommendations = current_product.metafields.custom.related_products.value -%}
+                {%- if recommendations != blank -%}
+                  <div class="drawer__recommend-products-title block">{{ 'sections.cart.recommend_products.title' | t }}</div>
+                  {%- render 'cart-drawer-divider' -%}
+                {%- else -%}
+                  <div class="drawer__recommend-products-title block"></div>
+                {%- endif -%}
+                <div class="drawer__recommend-products-items">
+                {%- for product in recommendations limit: 1 -%}
+                  <div class="drawer__recommend-products-item">
+                    <div class="drawer__recommend-products-item-img">
+                      <a href="{{ product.url }}">
+                        <img
+                          class="drawer__recommend-products-item-img-item"
+                          src="{{ product.featured_image | image_url }}"
+                          alt="{{ product.featured_image.alt | escape }}"
+                          loading="lazy"
+                          width="64"
+                          height="64">
+                        </a>
+                    </div>
+                    <div class="drawer__recommend-products-item-title">
+                      <p>{{ product.title }}</p>
+                    </div>
+                    <div class="drawer__recommend-products-item-price">
+                      {% if product.available %}
+                        <button
+                          class="drawer__recommend-products-item-price-text add-to-cart-recommend"
+                          data-product-id="{{ product.id }}"
+                          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                          data-add-recommended-to-cart-button
+                        >ADD {{ product.price | money }}</button>
+                      {% else %}
+                        <p class="drawer__recommend-products-item-price-text add-to-cart-recommend--sold-out">Sold Out</p>
+                      {% endif %}
+                      </div>
+                  </div>
+                {%- endfor -%}
+                </div>
+              {%- endif -%}
+              {%- render 'cart-drawer-divider' -%}
+            </div>
+
+            <div class="drawer__subtotal">
+              <div class="drawer__subtotal-content">
+                <p>{{ 'sections.cart.subtotal.title' | t }}</p>
+                <p class="drawer__subtotal-price" data-subtotal-price>{{ cart.total_price | money }}</p>
+              </div>
+              <div class="drawer__subtotal-description">
+                <p>{{ 'sections.cart.subtotal.description' | t }}</p>
+              </div>
+              <div class="drawer__additional-notice">
+                <p>{{ 'sections.cart.additional_notice' | t }}</p>
+              </div>
+            </div>
+
+            <div class="drawer__buttons">
+              <div class="drawer__ctas" {{ block.shopify_attributes }}>
+                <button
+                  type="submit"
+                  id="CartDrawer-Checkout"
+                  class="cart__checkout-button button"
+                  name="checkout"
+                  form="CartDrawer-Form"
+                  {% if cart == empty %}
+                    disabled
+                  {% endif %}
+                >
+                  {{ 'sections.cart.checkout' | t | upcase }}
+                </button>
+              </div>
+              <div class="drawer__view-my-cart">
+                  <a href="{{ routes.cart_url }}" class="drawer__view-my-cart-button button">
+                    {{ 'sections.cart.view_my_cart' | t | upcase }}
+                  </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</cart-drawer>

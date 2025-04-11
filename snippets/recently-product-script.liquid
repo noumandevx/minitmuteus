@@ -1,0 +1,28 @@
+<script>
+  function setRecentlyViewedProducts() {
+    const productData = {
+      productID: '{{ product.id }}',
+      productTitle: '{{ product.title }}',
+      productLink: '{{ product.url }}',
+      productImage: '{{ product.featured_image | img_url: "master" }}',
+      productType: '{{ product.type }}',
+      productPrice: '{{ product.price | divided_by: 100 }}',
+      productComparePrice: '{{ product.compare_at_price | divided_by: 100 }}'
+    };
+
+    let productList = [];
+    const localData = localStorage.getItem("recentlyViewedProduct");
+    if (localData !== null) {
+      productList = JSON.parse(localData);
+    }
+
+    const existingProductIndex = productList.findIndex(item => item.productID === productData.productID);
+    if (existingProductIndex !== -1) {
+      productList[existingProductIndex] = productData;
+    } else {
+      productList.push(productData);
+    }
+    localStorage.setItem("recentlyViewedProduct", JSON.stringify(productList));
+  }
+  setRecentlyViewedProducts();
+</script>

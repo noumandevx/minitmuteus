@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "showroom": {
+      "type": "showroom",
+      "blocks": {
+        "showroom_dropdowns_CX8VG8": {
+          "type": "showroom_dropdowns",
+          "settings": {
+            "main_heading": "HANNAM FLAGSHIP STORE",
+            "main_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-06-03-14-47-53_001.webp",
+            "heading": "MINITMUTE HANNAM FLAGSHIP STORE",
+            "address": "<p>2, Itaewon-ro 230, Yongsan-gu, Seoul,<br\/>Republic of Korea<\/p>",
+            "timing": "<p><strong>Opening Hours<br\/><\/strong>Tue – Sat 13:00 – 20:00<br\/>Sun, Mon Closed<\/p>",
+            "contact": "<p>Contact number<br\/>070-4640-2804<\/p>",
+            "half_image": "shopify:\/\/shop_images\/hannam2_6ad2bc34-48d6-4093-9bb1-6218f47c2340.webp",
+            "half_image_mobile": "shopify:\/\/shop_images\/hannam2_be8db151-9fde-4511-9b45-5e10eb99eb85.jpg",
+            "bottom_image": "shopify:\/\/shop_images\/hannam3.webp",
+            "button_text": "MAP",
+            "button_link": "https:\/\/www.google.co.kr\/maps\/place\/minitmute+hannam+flagship+store\/data=!3m1!4b1!4m6!3m5!1s0x357ca3bcd39c79b5:0x94fd7bf6462b4c2e!8m2!3d37.5355592!4d126.9993858!16s%2Fg%2F11t5y27nj4?entry=ttu"
+          }
+        },
+        "showroom_dropdowns_6c9Eym": {
+          "type": "showroom_dropdowns",
+          "settings": {
+            "main_heading": "SEONGSU STORE",
+            "main_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-08-22-15-39-22_001.jpg",
+            "heading": "MINITMUTE SEONGSU SHOWROOM",
+            "address": "<p>57 Yeonmujang-gil, Seongdong-gu, Seoul,<br\/>Republic of Korea<\/p>",
+            "timing": "<p><strong>Opening Hours<br\/><\/strong>Tue – Sat 13:00 – 20:00<br\/>Sun, Mon Closed<\/p>",
+            "contact": "<p>Contact number<br\/>070-4640-2803<\/p>",
+            "half_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-08-22-15-39-23_002.jpg",
+            "bottom_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-08-22-15-39-23_003.jpg",
+            "button_text": "MAP",
+            "button_link": "https:\/\/www.google.co.kr\/maps\/place\/minitmute\/data=!3m1!4b1!4m6!3m5!1s0x357ca5b9d212a529:0xb314fc28d2dacdd7!8m2!3d37.5423649!4d127.0559171!16s%2Fg%2F11hn_25q28?entry=ttu"
+          }
+        },
+        "showroom_dropdowns_WYidU8": {
+          "type": "showroom_dropdowns",
+          "settings": {
+            "main_heading": "SHINSEGAE CENTUM",
+            "main_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-06-03-14-47-53_003.jpg",
+            "heading": "MINITMUTE SHINSEGAE CENTUM",
+            "address": "<p>4F, 35, Centum nam-daero, Haeundae-gu, Busan, Republic of Korea<\/p>",
+            "timing": "<p><strong>Opening Hours<br\/><\/strong>Mon – Thu 10:30 – 20:00<br\/>Fri – Sun 10:30 – 20:30<\/p>",
+            "contact": "<p>Contact number<br\/>051-745-1623<\/p>",
+            "half_image": "shopify:\/\/shop_images\/2024-07-02_2.14.23.webp",
+            "bottom_image": "shopify:\/\/shop_images\/busan3.jpg",
+            "button_text": "MAP",
+            "button_link": "https:\/\/www.google.co.kr\/maps\/place\/%EC%8B%A0%EC%84%B8%EA%B3%84%EB%B0%B1%ED%99%94%EC%A0%90+%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90+%EB%AF%B8%EB%8B%9B%EB%AE%A4%ED%8A%B8\/data=!3m1!4b1!4m6!3m5!1s0x356893747547996d:0xff8685d225293bd9!8m2!3d35.1690121!4d129.1299905!16s%2Fg%2F11vd3lmx4m?entry=ttu"
+          }
+        },
+        "showroom_dropdowns_ijgJFL": {
+          "type": "showroom_dropdowns",
+          "settings": {
+            "main_heading": "TOKYO STORE",
+            "main_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-07-02-12-51-52_001.jpg",
+            "heading": "MINITMUTE TOKYO SHOWROOM",
+            "address": "<p>1F, Jingumae 3-33-2 in Shibuya-ku, Tokyo, Japan<\/p>",
+            "timing": "<p><strong>Opening Hours<br\/><\/strong>open year-round<br\/>Mon - Sun 12:00-20:00<\/p>",
+            "contact": "<p>Contact number<br\/>070-6513-9657<\/p>",
+            "half_image": "shopify:\/\/shop_images\/33_5fd63dac-2c5f-4d25-97a2-2f49d7a41f5b.jpg",
+            "bottom_image": "shopify:\/\/shop_images\/KakaoTalk_Photo_2024-07-02-12-51-54_003.jpg",
+            "button_text": "MAP",
+            "button_link": "https:\/\/www.google.com\/maps\/place\/minitmute+tokyo\/@35.6734805,139.7145284,18z\/data=!4m6!3m5!1s0x60188dcb138a0665:0x481543451b49e487!8m2!3d35.6719291!4d139.7116289!16s%2Fg%2F11vx4ds7ys?hl=ja-jp&entry=ttu&g_ep=EgoyMDI0MTExMy4xIKXMDSoASAFQAw%3D%3D"
+          }
+        }
+      },
+      "block_order": [
+        "showroom_dropdowns_CX8VG8",
+        "showroom_dropdowns_6c9Eym",
+        "showroom_dropdowns_WYidU8",
+        "showroom_dropdowns_ijgJFL"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "showroom"
+  ]
+}

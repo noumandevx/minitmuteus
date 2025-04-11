@@ -1,0 +1,200 @@
+{{ 'section-showroom.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+  <div class="mm-accordions" data-accordions="">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'showroom_dropdowns' -%}
+          <div class="mm-accordion__item">
+            <button class="mm-accordion__header" data-accordions-headers="{{ block.settings.main_heading }}" aria-expanded="false">
+              {{ block.settings.main_heading }}
+              <img src="{{ 'orderdetailDown.png' | file_img_url }}" alt="Down Arrow" class="mm-accordion__icon" height="auto" width="auto" loading="lazy">
+            </button>
+            <div class="mm-accordion__content" data-accordions-content="" aria-hidden="true">
+              <div class="mm-accordion__contentInner">
+                {%- assign main_image = block.settings.main_image -%}
+                {% if main_image != blank %}
+                  <div class="mm-accordion__image">
+                    <picture>
+                      {% if block.settings.main_image_mobile != blank %}
+                        <source media="(max-width:767px)" srcset="{{ block.settings.main_image_mobile |  img_url: 'master' }}">
+                      {% endif %}
+                      <img src="{{ main_image | img_url: 'master'  }}" class="mm-accordion__img" loading="lazy">
+                    </picture>
+                  </div>
+                {% endif %}
+                {%- assign half_image = block.settings.half_image -%}
+                {% if block.settings.heading != blank or block.settings.address != blank or block.settings.timing != blank or block.settings.contact != blank or half_image != blank
+                %}
+                  <div class="mm-accordion__row">
+                    <div class="mm-accordion__col">
+                      {% if block.settings.heading != blank %}
+                        <h3 class="mm-accordion__colHeading">
+                          {{ block.settings.heading }}
+                        </h3>
+                      {% endif %}
+                      {% if block.settings.address != blank %}
+                        <div class="mm-accordion__address">
+                          {{ block.settings.address }}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.timing != blank %}
+                        <div class="mm-accordion__time">
+                          {{ block.settings.timing }}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.contact != blank %}
+                        <div class="mm-accordion__contact">
+                          {{ block.settings.contact }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    {% if half_image != blank %}
+                      <div class="mm-accordion__col mm-accordion__col--img">
+                        <picture>
+                          {% if block.settings.half_image_mobile != blank %}
+                            <source media="(max-width:767px)" srcset="{{ block.settings.half_image_mobile |  img_url: 'master' }}">
+                          {% endif %}
+                          <img src="{{ half_image | img_url: 'master'  }}" class="mm-accordion__img" loading="lazy">
+                        </picture>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {%- assign bottom_image = block.settings.bottom_image -%}
+                {% if bottom_image != blank %}
+                  <div class="mm-accordion__image mm-accordion__image--last">
+                    <picture>
+                      {% if block.settings.bottom_image_mobile != blank %}
+                        <source media="(max-width:767px)" srcset="{{ block.settings.bottom_image_mobile |  img_url: 'master' }}">
+                      {% endif %}
+                      <img src="{{ bottom_image | img_url: 'master'  }}" class="mm-accordion__img" loading="lazy">
+                    </picture>
+                  </div>
+                {% endif %}
+                {% if block.settings.button_link != blank %}
+                  <div class="mm-accordion__btn">
+                    <a href="{{ block.settings.button_link }}" class="btn--extraBig button button--secondary" target="_blank">
+                      {{ block.settings.button_text }}
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+<script src="{{ 'showroom.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Showroom",
+    "class": "showroom",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Showroom Dropdowns",
+        "type": "showroom_dropdowns",
+        "settings": [
+          {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Main Heading",
+            "default": "SHOWROOM"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_image",
+            "label": "Main Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_image_mobile",
+            "label": "Main Image Mobile"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "richtext",
+            "id": "address",
+            "label": "Address"
+          }, {
+            "type": "richtext",
+            "id": "timing",
+            "label": "Timing"
+          }, {
+            "type": "richtext",
+            "id": "contact",
+            "label": "Contact"
+          }, {
+            "type": "image_picker",
+            "id": "half_image",
+            "label": "Half Image"
+          }, {
+            "type": "image_picker",
+            "id": "half_image_mobile",
+            "label": "Half Image Mobile"
+          }, {
+            "type": "image_picker",
+            "id": "bottom_image",
+            "label": "Bottom Image"
+          }, {
+            "type": "image_picker",
+            "id": "bottom_image_mobile",
+            "label": "Bottom Image Mobile"
+          }, {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

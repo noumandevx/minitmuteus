@@ -1,0 +1,71 @@
+.related-products {
+  display: block;
+}
+
+.related-products__heading {
+  font-size: var(--font-body-xll-size);
+  line-height: 19px;
+  font-weight: var(--font-weight-400);
+  color: var(--color-black-06);
+  margin: 0 0 55.51px;
+}
+
+.related-products .card__content {
+  height: 0;
+  opacity: 0;
+}
+
+.related-products .swiper-button-next:after,
+.related-products .swiper-button-prev:after {
+  display: none;
+}
+
+.related-products .swiper-button-next .arrow-svg,
+.related-products .swiper-button-prev .arrow-svg {
+  height: 14.67px;
+  width: 14.67px;
+}
+
+.related-products .product-card__swatches {
+  display: none;
+}
+
+.related-products .swym-wishlist-collections-v2 {
+  display: none;
+}
+
+@media(min-width: 750px) {
+  .related-products.page-width {
+    max-width: 1920px;
+    padding-inline: 110PX;
+  }
+
+  .related-products .grid {
+    --grid-desktop-horizontal-spacing: 10.89px;
+    --grid-desktop-vertical-spacing: 10.89px;
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: var(--grid-desktop-vertical-spacing);
+  }
+}
+
+@media(max-width: 749px) {
+  .related-products .swiper-button-prev {
+    left: 0;
+  }
+
+  .related-products .swiper-button-next {
+    right: 0;
+  }
+
+  .related-products .swiper-button-next .arrow-svg,
+  .related-products .swiper-button-prev .arrow-svg {
+    height: 13px;
+    width: 13px;
+  }
+
+  .related-products__heading {
+    font-size: var(--font-body-hero-text-small-size);
+    line-height: 10px;
+    margin-bottom: 15.23px;
+  }
+}

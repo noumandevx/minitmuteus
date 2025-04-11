@@ -1,0 +1,92 @@
+{%- liquid
+  assign custom_colors = settings.color_swatches | newline_to_br | split: '<br />'
+  assign key_array = ''
+  assign val_array = ''
+
+  for color in custom_colors
+    assign key = color | split: ':' | first | rstrip
+    assign value = color | split: ':' | last | lstrip
+    assign key_array = key_array | append: ',' | append: key
+    assign val_array = val_array | append: ',' | append: value
+  endfor
+
+  assign key_array = key_array | remove_first: ',' | strip_newlines | downcase | split: ','
+  assign val_array = val_array | remove_first: ',' | split: ','
+-%}
+
+<swatches-slider class="product-card__swatches">
+  <div class="product-card__swatches-slider" data-swatches-slider>
+    <ul class="swiper-wrapper card__variant-options" data-custom-options>
+      {% if card_product.metafields.color.related_products != blank %}
+        {% assign relatedProducts = card_product.metafields.color.related_products.value %}
+        {% for relatedProduct in relatedProducts %}
+          <li class="swiper-slide" data-swatches-slide data-tooltip>
+            <div class="card__variant-options-value {% if card_product.url == relatedProduct.url %}is-selected{% endif %}"
+              data-custom-option-value 
+              data-swatch-url="{{ relatedProduct.url }}"
+              style="background-color:{{ relatedProduct.metafields.custom.product_color }}"
+              data-swatches-slide
+              data-swatch-value="{{ relatedProduct.title }}"
+              data-variant-price="{{ relatedProduct.price | money }}"
+              {% if relatedProduct.compare_at_price > relatedProduct.price %}data-variant-compare-price="{{ relatedProduct.compare_at_price | money }}"{% endif %}
+              data-attach-variant="{{ value.variant.id }}"
+              {% if relatedProduct.featured_image != blank or relatedProduct.metafields.custom.product_plp_thumbnail != blank %} 
+                {% if relatedProduct.metafields.custom.product_plp_thumbnail != blank %}
+                  variant-image="{{ relatedProduct.metafields.custom.product_plp_thumbnail | image_url }}"
+                {% else %}
+                  variant-image="{{ relatedProduct.featured_image | image_url }}"
+                {% endif %}
+              {% endif %}
+            >
+              <span class="visually-hidden">{{ relatedProduct.title }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+        {% if settings.pcard_enable_color_swatches == true %}
+          {%- for option in card_product.options_with_values -%}
+            {% assign optionName = option.name | downcase %}
+            {% if optionName == 'Select a Color' or optionName == 'color' %}
+              {% for value in option.values %}
+                {%- liquid
+                  assign color_value = value | downcase | escape
+                  for custom_color in key_array
+                    if custom_color == color_value
+                      assign color_value = val_array[forloop.index0]
+                    endif
+                  endfor
+                  if value.swatch.image
+                    assign bg_value = value.swatch.image | image_url: width: variant_image_size
+                  elsif value.swatch.color
+                    assign color_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                  endif
+                -%}
+                <li class="swiper-slide" data-swatches-slide data-tooltip>
+                  <div class="card__variant-options-value {% if value.variant.image == card_product.featured_media %}is-selected{% endif %}"
+                    data-custom-option-value style="background-color:{{ color_value }}"
+                    data-swatches-slide
+                    data-swatch-value="{{ value }}"
+                    data-variant-price="{{ value.variant.price | money }}"
+                    {% if value.variant.compare_at_price > value.variant.price %}data-variant-compare-price="{{ value.variant.compare_at_price | money }}"{% endif %}
+                    data-attach-variant="{{ value.variant.id }}"
+                    {% if value.variant.image != blank %} variant-image="{{ value.variant.image | image_url }}"{% endif %}
+                  >
+                    <span class="visually-hidden">{{ value }}</span>
+                  </div>
+                </li>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    </ul>
+    {% if color_sIze >= 6 %}
+      <div class="swiper-button-prev product-card__slider-buttons" data-swiper-button-prev>
+        {% render 'icon-prev' %}
+      </div>
+      <div class="swiper-button-next product-card__slider-buttons" data-swiper-button-next>
+        {% render 'icon-next' %}
+      </div>
+    {% endif %}
+  </div>
+</swatches-slider>

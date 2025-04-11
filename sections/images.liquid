@@ -1,0 +1,32 @@
+{{ 'images-lookbook.css' | asset_url | stylesheet_tag }}
+
+{% assign images = page.metafields.custom.lookbook_detail_images.value %}
+
+{% if images %}
+  <div class="images-lookbook">
+    <div class="images-lookbook__container">
+      {% for image in images %}
+        {% if image != blank %}
+          <img
+            src="{{ image | img_url: 'master' }}"
+            width="{{ image.width }}"
+            height="{{ image.height }}"
+            class="images-lookbook__img"
+            alt="{{ image.alt }}"
+          >
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image",
+  "presets": [
+    {
+      "name": "Images"
+    }
+  ]
+}
+{% endschema %}

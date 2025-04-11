@@ -1,0 +1,101 @@
+.main-blog-notice .title--primary {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-article-title-size);
+  color: var(--color-black-01);
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 100px 0 90px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.main-blog-notice .blog-articles {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.main-blog-notice .blog-articles .blog-articles__article:first-child {
+  border-top: 1px solid var(--color-black);
+}
+
+.main-blog-notice .blog-articles .blog-articles__article {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 20px 0px;
+  border-bottom: 1px solid var(--color-black);
+}
+
+.main-blog-notice .blog-articles .blog-articles__article .card__information {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.blog-articles__article .card__heading {
+  font-family: var(--font-primary);
+  font-size: var(--font-body-lg-size);
+  font-weight: var(--font-weight-400);
+  color: var(--color-black-01);
+  line-height: 22px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.blog-articles__article .card__heading:hover .full-unstyled-link {
+  text-decoration: underline;
+}
+
+.blog-articles__article .article-card__info {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.blog-articles__article .article-card__info .article-card__date {
+  line-height: 1;
+  font-size: var(--font-body-s-size);
+  color: var(--color-black-01);
+}
+
+.blog-articles__article .article-card__info .article-card__author {
+  line-height: 1;
+  font-size: var(--font-body-lg-size);
+  color: var(--color-black-01);
+}
+
+@media screen and (max-width: 768px) {
+  .main-blog-notice .title--primary {
+    margin: 50px 0;
+    font-size: var(--font-body-lg-size);
+  }
+
+  .main-blog-notice .blog-articles .blog-articles__article .card__information {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .blog-articles__article .card__heading {
+    padding: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: var(--font-body-2xs-size);
+  }
+
+  .blog-articles__article .article-card__info {
+    flex: 0 0 100%;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .blog-articles__article .article-card__info .article-card__date,
+  .blog-articles__article .article-card__info .article-card__author {
+    font-size: var(--font-body-hero-text-small-size);
+  }
+
+  .main-blog-notice .blog-articles .blog-articles__article {
+    padding: 10px 0;
+  }
+}

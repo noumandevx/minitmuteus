@@ -1,0 +1,167 @@
+{{ 'image-categories.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>
+
+<div id="{{ section.id }}" class="categories-grid section-{{ section.id }}-padding ">
+  <div class="categories-grid__container">
+    {% for block in section.blocks %}
+      {% assign buttonText = block.settings.btn_text | handleize %}
+      {% if block.settings.image != blank %}
+        <style>
+          .categories-grid__item--{{ block.id }} {
+            width: 100%;
+          }
+
+          @media (min-width: 768px) {
+            .categories-grid__item--{{ block.id }} {
+              {% if block.settings.full_width == true %}
+                width: {{ block.settings.image_width }}%
+              {% else %}
+                width: calc({{ block.settings.image_width }}% - 10px )
+              {% endif %}
+            }
+          }
+        </style>
+
+        <div
+          class="categories-grid__item categories-grid__item--{{ block.id }}{% if block.settings.mobile_image != blank and block.settings.image != blank %} categories-grid__item-text{% endif %}{% if buttonText %} categories-grid__item-{{ buttonText }}{% endif %}"
+        >
+          {% if block.settings.mobile_image != blank %}
+            <picture class="categories-grid__item-wrap">
+              <source media="(max-width:769)" srcset="{{ block.settings.mobile_image | img_url: 'master' }}">
+              <img
+                src="{{ block.settings.image | img_url: 'master' }}"
+                class="categories-grid__item-img"
+                alt="{{ block.settings.image.alt }}"
+              >
+            </picture>
+          {% else %}
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | img_url: 'master' }}"
+                class="categories-grid__item-img"
+                alt="{{ block.settings.image.alt }}"
+              >
+            {% endif %}
+          {% endif %}
+          {% if block.settings.btn_text != blank %}
+            <div class="categories-grid__item-button">
+              <a class="btn btn--outline-white hover--black" href="{{ block.settings.btn_url }}">
+                {{ block.settings.btn_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Image Categories",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "step": 2,
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top Mobile",
+      "step": 1,
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom Mobile",
+      "step": 1,
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "default": 50,
+          "label": "Image width",
+          "id": "image_width",
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full width",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Categories"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "main": {
+      "type": "main-register",
+      "settings": {
+        "checkbox_1": "Consent to Receive Emails",
+        "details_button_url": "",
+        "details_button_text": "",
+        "checkbox_2": "Agree to Terms of Use, Privacy Policy, and subscription for shopping information.",
+        "checkbox_3": "Agree to Shopping and Return information.",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

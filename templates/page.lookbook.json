@@ -1,0 +1,366 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "lookbook_main_3hxQjY": {
+      "type": "lookbook",
+      "blocks": {
+        "image_EXQrNQ": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/lookbook-1.webp",
+            "image_link": "shopify:\/\/pages\/25ss"
+          }
+        },
+        "image_AcLzyb": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/2.webp",
+            "image_link": "shopify:\/\/pages\/25-capsule-a"
+          }
+        },
+        "image_869nHG": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/3.webp",
+            "image_link": "shopify:\/\/pages\/24wv"
+          }
+        },
+        "image_f9nKxt": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/4.webp",
+            "image_link": "shopify:\/\/pages\/24fw-part2"
+          }
+        },
+        "image_ptqLpj": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/5.webp",
+            "image_link": "shopify:\/\/pages\/24fw"
+          }
+        },
+        "image_fjL9tw": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/6.webp",
+            "image_link": "shopify:\/\/pages\/lookbook-detail"
+          }
+        },
+        "image_Rgyh36": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/7.webp",
+            "image_link": "shopify:\/\/pages\/2024-summer-compaign"
+          }
+        },
+        "image_CmFrzk": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/8.webp",
+            "image_link": "shopify:\/\/pages\/24ss"
+          }
+        },
+        "image_tVqWCB": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/9.webp",
+            "image_link": "shopify:\/\/pages\/copy-of-24ss"
+          }
+        },
+        "image_MtBW7y": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/10.webp",
+            "image_link": "shopify:\/\/pages\/copy-of-23wv"
+          }
+        },
+        "image_PLTtet": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/11.webp",
+            "image_link": "shopify:\/\/pages\/23sv1"
+          }
+        },
+        "image_9KAJrR": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/12.webp",
+            "image_link": "shopify:\/\/pages\/23sv"
+          }
+        },
+        "image_3M8tVH": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/13.webp",
+            "image_link": "shopify:\/\/pages\/23ss"
+          }
+        },
+        "image_Qr88LF": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/14.webp",
+            "image_link": "shopify:\/\/pages\/copy-of-23ss"
+          }
+        },
+        "image_DTPd7Q": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/15.webp",
+            "image_link": "shopify:\/\/pages\/22wv1"
+          }
+        },
+        "image_qffhWD": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/17.webp",
+            "image_link": "shopify:\/\/pages\/22fw"
+          }
+        },
+        "image_7xfajQ": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/16.webp",
+            "image_link": "shopify:\/\/pages\/22ss"
+          }
+        },
+        "image_LYqw3P": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/18.webp",
+            "image_link": "shopify:\/\/pages\/home"
+          }
+        },
+        "image_VmLUnp": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/19.webp",
+            "image_link": "shopify:\/\/pages\/22ss-1"
+          }
+        },
+        "image_iiiwVw": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/20.webp",
+            "image_link": "shopify:\/\/pages\/20-wv"
+          }
+        },
+        "image_YiQJyD": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/21.jpg",
+            "image_link": "shopify:\/\/pages\/21wv"
+          }
+        },
+        "image_ikHy6b": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/22.webp",
+            "image_link": "shopify:\/\/pages\/21-fw"
+          }
+        },
+        "image_mbwY4E": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/23.webp",
+            "image_link": "shopify:\/\/pages\/21-summer-2"
+          }
+        },
+        "image_ezAYfW": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/24.webp",
+            "image_link": "shopify:\/\/pages\/21-sv"
+          }
+        },
+        "image_nDRbN6": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/25.webp",
+            "image_link": "shopify:\/\/pages\/21-a"
+          }
+        },
+        "image_Ee4h3Y": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/26.webp",
+            "image_link": "shopify:\/\/pages\/20wv"
+          }
+        },
+        "image_a3QMEG": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/27.jpg",
+            "image_link": "shopify:\/\/pages\/20-d"
+          }
+        },
+        "image_z3xUeF": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/28.webp",
+            "image_link": "shopify:\/\/pages\/20-c"
+          }
+        },
+        "image_zn7C39": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/29.webp",
+            "image_link": "shopify:\/\/pages\/20-a"
+          }
+        },
+        "image_NyMkpE": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/30.webp",
+            "image_link": "shopify:\/\/pages\/19-d"
+          }
+        },
+        "image_BDTdRt": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/31.webp",
+            "image_link": "shopify:\/\/pages\/nanimal"
+          }
+        },
+        "image_NdeR4V": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/32.webp",
+            "image_link": "shopify:\/\/pages\/19-c"
+          }
+        },
+        "image_inyHVn": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/33.webp",
+            "image_link": "shopify:\/\/pages\/19-b"
+          }
+        },
+        "image_RBexMd": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/34.webp",
+            "image_link": "shopify:\/\/pages\/19-a"
+          }
+        },
+        "image_KeyUrz": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/35.webp",
+            "image_link": "shopify:\/\/pages\/18-d"
+          }
+        },
+        "image_9dCHAJ": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/36.webp",
+            "image_link": "shopify:\/\/pages\/18-c"
+          }
+        },
+        "image_wbHymE": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/37.webp",
+            "image_link": "shopify:\/\/pages\/18-b"
+          }
+        },
+        "image_BaPqKc": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/38.webp",
+            "image_link": "shopify:\/\/pages\/17-a"
+          }
+        },
+        "image_N4AtHf": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/39.webp",
+            "image_link": "shopify:\/\/pages\/16-a"
+          }
+        },
+        "image_nwEft9": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/40.webp",
+            "image_link": "shopify:\/\/pages\/17-b"
+          }
+        },
+        "image_Hpp3fz": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/41.webp",
+            "image_link": "shopify:\/\/pages\/18-a"
+          }
+        }
+      },
+      "block_order": [
+        "image_EXQrNQ",
+        "image_AcLzyb",
+        "image_869nHG",
+        "image_f9nKxt",
+        "image_ptqLpj",
+        "image_fjL9tw",
+        "image_Rgyh36",
+        "image_CmFrzk",
+        "image_tVqWCB",
+        "image_MtBW7y",
+        "image_PLTtet",
+        "image_9KAJrR",
+        "image_3M8tVH",
+        "image_Qr88LF",
+        "image_DTPd7Q",
+        "image_qffhWD",
+        "image_7xfajQ",
+        "image_LYqw3P",
+        "image_VmLUnp",
+        "image_iiiwVw",
+        "image_YiQJyD",
+        "image_ikHy6b",
+        "image_mbwY4E",
+        "image_ezAYfW",
+        "image_nDRbN6",
+        "image_Ee4h3Y",
+        "image_a3QMEG",
+        "image_z3xUeF",
+        "image_zn7C39",
+        "image_NyMkpE",
+        "image_BDTdRt",
+        "image_NdeR4V",
+        "image_inyHVn",
+        "image_RBexMd",
+        "image_KeyUrz",
+        "image_9dCHAJ",
+        "image_wbHymE",
+        "image_BaPqKc",
+        "image_N4AtHf",
+        "image_nwEft9",
+        "image_Hpp3fz"
+      ],
+      "settings": {
+        "padding_top": 66,
+        "padding_bottom": 106,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "lookbook_main_3hxQjY"
+  ]
+}

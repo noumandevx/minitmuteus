@@ -1,0 +1,42 @@
+{{ 'sub-collection.css' | asset_url | stylesheet_tag }}
+{% assign collection_list = collection.metafields.custom.sub_collections.value %}
+{% assign parent_collection = collection.metafields.custom.parent_collection.value %}
+
+{% if collection_list != blank or parent_collection != blank %}
+  <sub-collections class="sub-collections">
+    <div class="sub-collections__container page-width">
+      <div class="sub-collections__wrapper">
+        {% if parent_collection != blank %}
+          <div class="sub-collections_item">
+            <a class="sub-collections-link sub-collections-current full-unstyled-link" href="{{ parent_collection.url }}">{{ 'sections.collection_list.view_all' | t }}
+            </a>
+          </div>
+        {% endif %}
+        {% if collection_list != blank %}
+          {% for col in collection_list %}
+            <div class="sub-collections_item">
+              <a class="sub-collections-link full-unstyled-link{% if col.url == collection.url %} sub-collections-link--active{% endif %}" href="{{ col.url }}">{{ col.title }}</a>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </sub-collections>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Sub Collection",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [],
+    "presets": [
+      {
+        "name": "Sub Collection",
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,193 @@
+.featured-product-slider__container {
+  max-width: 100%;
+}
+
+.featured-product-slider__heading {
+  text-align: center;
+}
+
+.featured-product-slider .swiper-pagination-bullets .swiper-pagination-bullet {
+  max-width: 180px;
+  width: 100%;
+  min-width: 20px;
+  height: 2px;
+  border-radius: unset;
+  margin: 0px;
+  display: block;
+}
+
+.featured-product-slider
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: var(--color-grey-12);
+}
+
+.featured-product-slider .swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 35px;
+}
+
+.featured-product-slider .swiper-button-next:after,
+.featured-product-slider .swiper-button-prev:after {
+  content: none;
+}
+
+.featured-product-slider__container {
+  position: relative;
+}
+
+.featured-product-slider__wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-product-slider__container .card__information .price__container,
+.featured-product-slider__container .card-information,
+.featured-product-slider__container .full-unstyled-link {
+  text-align: center;
+}
+
+.hide-price .card-information .price {
+  display: none;
+}
+
+.featured-product-slider__container .card-information {
+  padding-top: 7.68px;
+}
+
+.featured-product-slider__container
+  .card--standard
+  > .card__content
+  .card__information
+  .price__container {
+  width: 100%;
+}
+
+.featured-product-slider__container .underline-links-hover:hover a {
+  text-decoration: none;
+}
+
+.card:hover .media.media--hover-effect > .motion-reduce:first-child:only-child,
+.card-wrapper:hover
+  .media.media--hover-effect
+  > .motion-reduce:first-child:only-child {
+  transform: none;
+}
+
+.featured-product-slider__container .full-unstyled-link {
+  text-transform: none;
+}
+
+.featured-product-slider .swiper-button-next {
+  right: 35.36px;
+}
+
+.featured-product-slider .swiper-button-prev {
+  left: 35.36px;
+}
+
+.featured-product-slider .swiper-button-next,
+.featured-product-slider .swiper-button-prev {
+  width: 5.6px;
+  height: 11.2px;
+}
+
+.card-wrapper .full-unstyled-link {
+  color: var(--color-black-05);
+  font-family: var(--font-primary);
+  font-size: var(--font-body-lg-size);
+  font-style: normal;
+  font-weight: var(--font-weight-400);
+  line-height: normal;
+}
+
+.card-product-type {
+  color: var(--color-grey-02);
+  font-family: var(--font-primary);
+  font-size: var(--font-body-hero-text-small-size);
+  font-style: normal;
+  font-weight: var(--font-weight-400);
+  line-height: normal;
+}
+
+.template-index .card__inner {
+  max-width: 176px;
+  height: 176px;
+  margin: 0 auto;
+}
+
+.template-index .card--card:after,
+.template-index .card--standard .card__inner:after,
+.template-index .card--card:before,
+.template-index .card--standard .card__inner::before {
+  content: none;
+}
+
+.featured-product-slider .swiper-button-next,
+.featured-product-slider .swiper-button-prev {
+  z-index: 2;
+}
+
+.featured-product-slider .card-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.featured-product-slider__container .card__media .media img {
+  object-fit: contain;
+}
+
+.featured-product-slider .card--standard .card__inner {
+  background: transparent;
+}
+ 
+.template-index .featured-product-slider__container .product-card__swatches {
+  display: none;
+}
+
+@media (min-width: 767px) {
+  .featured-product-slider
+    .swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    height: 4px;
+  }
+
+  .featured-product-slider .card-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .template-index .card__inner {
+    max-width: 100%;
+    height: 496px;
+  }
+
+  .featured-product-slider__container .card-information {
+    padding-top: 14.02px;
+  }
+
+  .featured-product-slider .swiper-button-next {
+    right: 112px;
+  }
+
+  .featured-product-slider .swiper-button-prev {
+    left: 112px;
+  }
+
+  .featured-product-slider .swiper-button-next,
+  .featured-product-slider .swiper-button-prev {
+    width: 14px;
+    height: 26px;
+  }
+
+  .card-wrapper .full-unstyled-link {
+    font-size: 17.22px;
+  }
+
+  .template-index .featured-product-slider__container .product-card__swatches {
+    display: flex;
+  }
+}

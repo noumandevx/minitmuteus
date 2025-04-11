@@ -1,0 +1,184 @@
+{{ 'image-slides.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}--padding {
+    padding-top: {{ section.settings.padding_top_mob }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mob }}px;
+    margin-bottom: 0;
+  }
+
+  .section-{{ section.id }}--padding .swiper-pagination-bullet {
+    height: 2px;
+    background: var(--color-white);
+    max-width: 160px;
+    min-width: 70px;
+  }
+
+  .section-{{ section.id }}--padding .swiper-pagination {
+    position: absolute;
+    bottom: 20px;
+    padding: 0px 55px;
+  }
+
+  .section-{{ section.id }}--padding .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--color-white);
+    border-radius:10px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .section-{{ section.id }}--padding .images-slider__container {
+      padding-inline: 90px;
+      max-width: 1280px;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .section-{{ section.id }}--padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .section-{{ section.id }}--padding .swiper-pagination {
+      bottom: 50px;
+    }
+
+    .section-{{ section.id }}--padding .swiper-pagination-bullet {
+      height: 4px;
+    }
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }}--padding section-image-slider">
+  <image-slider class="images-slider">
+    <div class="images-slider__container">
+      {% if section.settings.heading != blank %}
+        <div class="images-slider__heading">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+      <div
+        class="swiper images-slider__slides-container"
+        data-swiper-container
+        data-desktop-cols="{{ section.settings.desktop_cols }}"
+        data-mobile-cols="{{ section.settings.mobile_cols }}"
+      >
+        <div class="swiper-wrapper images-slider__slides-wrapper">
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              <div class="swiper-slide swiper-wrapper images-slider__slide">
+                {{
+                  block.settings.image
+                  | image_url: width: 1000
+                  | image_tag:
+                    width: block.settings.image.width,
+                    height: block.settings.image.height,
+                    class: 'images-slider__slide-image'
+                }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div data-swiper-navigation class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></div>
+      </div>
+    </div>
+  </image-slider>
+</div>
+<script src="{{ 'image-slides.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "Image slides",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop: Spacing Top",
+      "step": 5,
+      "default": 40,
+      "min": 0,
+      "max": 500,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop: Spacing Bottom",
+      "step": 5,
+      "default": 40,
+      "min": 0,
+      "max": 500,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mob",
+      "label": "Mobile: Spacing Top",
+      "step": 5,
+      "default": 55,
+      "min": 0,
+      "max": 500,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mob",
+      "label": "Mobile: Spacing Bottom",
+      "step": 5,
+      "default": 55,
+      "min": 0,
+      "max": 500,
+      "unit": "px"
+    },
+    {
+      "type": "richtext",
+      "label": "Add Heading",
+      "id": "heading"
+    },
+    {
+      "type": "range",
+      "id": "limit_products",
+      "label": "Products To Show",
+      "step": 1,
+      "min": 0,
+      "max": 50,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "desktop_cols",
+      "label": "Desktop Columns",
+      "step": 1,
+      "min": 0,
+      "max": 5,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "mobile_cols",
+      "label": "Mobile Columns",
+      "step": 1,
+      "min": 0,
+      "max": 5,
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.slideshow.blocks.slide.name",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image slides"
+    }
+  ]
+}
+{% endschema %}

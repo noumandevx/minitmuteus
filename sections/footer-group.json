@@ -1,0 +1,96 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_popup_E9jDi7": {
+      "type": "newsletter-popup",
+      "settings": {
+        "image": "shopify://shop_images/v46YqB-2.png",
+        "title": "Welcome to minitmute",
+        "content": "<p>Sign up to our newsletter for 10% off your first order</p>",
+        "marketing_text": "<p>By signing up I agree to receive email marketing.<br/><br/>The coupon is issued during (3/31-4/30) as a renewal event.</p>",
+        "no_thanks_text": "No, thanks.",
+        "enable_popup": true,
+        "enable_cookie": true
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_nEjdRH": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Care",
+            "menu": "footer",
+            "show_social": false,
+            "social_text": "Follow us"
+          }
+        },
+        "link_list_4PUA7k": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Contact",
+            "menu": "contact",
+            "show_social": true,
+            "social_text": "Follow us"
+          }
+        },
+        "newsletter_QTp64c": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Newsletter",
+            "content": "<p>Sign up for our newsletter and receive new collections and discounts.</p>",
+            "enable_newsletter": true
+          }
+        },
+        "social_nECL34": {
+          "type": "social",
+          "settings": {
+            "heading": "Follow us",
+            "disable_desktop": true,
+            "show_social": true
+          }
+        }
+      },
+      "block_order": [
+        "link_list_nEjdRH",
+        "link_list_4PUA7k",
+        "newsletter_QTp64c",
+        "social_nECL34"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "footer_menu": "footer-mobile-menu",
+        "enable_language_selector": false,
+        "enable_copyright": false,
+        "footer_text": "<p>MVILLAGE INC | OWNER: SOO RIN JEON | 228-86-02371 | 2023-SEOULSEONGDONG-0932<br/>2F, 57, YEONMUJANG-GIL, SEONGDONG-GU, SEOUL, REPUBLIC OF KOREA | <a href=\"mailto:info@minitmute.com\" title=\"mailto:info@minitmute.com\">INFO@MINITMUTE.COM</a></p><p>Ⓒ 2015. minitmute ALL RIGHTS RESERVED.</p>",
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "margin_top_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 110,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 44
+      }
+    }
+  },
+  "order": [
+    "newsletter_popup_E9jDi7",
+    "footer"
+  ]
+}
